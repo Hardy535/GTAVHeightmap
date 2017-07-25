@@ -7,7 +7,7 @@ namespace GTAVHeightMap
     public class GTAVHeightMap : IDisposable
     {
         // Map/Game translation information
-        private const float HighestPoint = 805.1942138671875f;
+        private const float HighestPoint = 805.1956176757812f;
         
         private const float Point1GameX = 1972.606f;
         private const float Point1GameY = 3817.044f;
