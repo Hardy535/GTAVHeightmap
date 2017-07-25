@@ -12,9 +12,10 @@ namespace GTAVHeightMap
         {
             var xCoord = float.Parse(args[0]);
             var yCoord = float.Parse(args[1]);
-            
-            var gtavHeightMap = new GTAVHeightMap(File.OpenRead(HeightMapFilePath));
-            var heightAtCoordinate = gtavHeightMap.GetHeightAtCoordinate(xCoord, yCoord);
+
+            float heightAtCoordinate;
+            using (var gtavHeightMap = new GTAVHeightMap(File.OpenRead(HeightMapFilePath)))
+                heightAtCoordinate = gtavHeightMap.GetHeightAtCoordinate(xCoord, yCoord);
 
             Console.WriteLine($"Height at coördinate X: {xCoord}, Y: {yCoord} is: {heightAtCoordinate}");
             Console.ReadLine();

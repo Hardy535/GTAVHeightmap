@@ -4,7 +4,7 @@ using System.IO;
 
 namespace GTAVHeightMap
 {
-    public class GTAVHeightMap
+    public class GTAVHeightMap : IDisposable
     {
         // Map/Game translation information
         private const float HighestPoint = 805.1942138671875f;
@@ -55,6 +55,11 @@ namespace GTAVHeightMap
             var pixelAtCoordinate = _heightMapBitmap.GetPixel(translatedX, translatedY).GetBrightness();
 
             return pixelAtCoordinate * HighestPoint;
+        }
+
+        public void Dispose()
+        {
+            _heightMapBitmap?.Dispose();
         }
     }
 }
