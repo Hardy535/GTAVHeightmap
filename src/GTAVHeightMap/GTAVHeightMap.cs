@@ -6,16 +6,18 @@ namespace GTAVHeightMap
 {
     public class GTAVHeightMap
     {
+        // Map/Game translation information
         private const float HighestPoint = 805.1942138671875f;
-
-        private const float Game1X = 1972.606f;
-        private const float Game1Y = 3817.044f;
-        private const float Map1Lng = 2528;
-        private const float Map1Lat = 1502;
-        private const float Game2X = -1154.11f;
-        private const float Game2Y = -2715.203f;
-        private const float Map2Lng = 1497;
-        private const float Map2Lat = 3658;
+        
+        private const float Point1GameX = 1972.606f;
+        private const float Point1GameY = 3817.044f;
+        private const float Point1MapX = 2528;
+        private const float Point1MapY = 1502;
+        
+        private const float Point2GameX = -1154.11f;
+        private const float Point2GameY = -2715.203f;
+        private const float Point2MapX = 1497;
+        private const float Point2MapY = 3658;
         
         private readonly Bitmap _heightMapBitmap;
         
@@ -25,10 +27,11 @@ namespace GTAVHeightMap
                 _heightMapBitmap = new Bitmap(heightMapImageFileStream);
         }
 
+        // Logic from: http://gta5map.glokon.org/
         private static Tuple<int, int> TranslateGameToImageCoordinate(float x, float z)
         {
-            var imageXConverted = Map1Lng + (x - Game1X) * (Map1Lng - Map2Lng) / (Game1X - Game2X);
-            var imageYConverted = Map1Lat + (z - Game1Y) * (Map1Lat - Map2Lat) / (Game1Y - Game2Y);
+            var imageXConverted = Point1MapX + (x - Point1GameX) * (Point1MapX - Point2MapX) / (Point1GameX - Point2GameX);
+            var imageYConverted = Point1MapY + (z - Point1GameY) * (Point1MapY - Point2MapY) / (Point1GameY - Point2GameY);
             
             return new Tuple<int, int>((int)imageXConverted, (int)imageYConverted);
         }
